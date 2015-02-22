@@ -1,0 +1,23 @@
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+							
+			$.ajax({
+				async: false,
+				type: "GET",
+				url: "../../json/config.json",
+				dataType: "json",
+				success: function(json){
+					dominio = json.url;
+				}
+			});
+
+			$("body").append( dominio );
+		});
+	</script>
+</head>
+<body>
+</body>
+</html>

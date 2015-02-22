@@ -1,0 +1,37 @@
+{
+    "canvas_id":"",
+    "canvas_name":"",
+    "manager_id":"",
+    "manager_name":"",
+ 
+
+    //Na verdade não preciso dos dados abaixo. Só preciso saber a ID que referencia cada box
+    "Box":
+        [
+            {"box_id":"0", "box_name":"justificativas"},
+            {"box_id":"1", "box_name":"objsmart"},
+            {"box_id":"2", "box_name":"beneficios"},
+            {"box_id":"3", "box_name":"produto"},
+            {"box_id":"4", "box_name":"requisitos"},
+            {"box_id":"5", "box_name":"stakeholders"},
+            {"box_id":"6", "box_name":"equipe"},
+            {"box_id":"7", "box_name":"premissas"},
+            {"box_id":"8", "box_name":"entregas"},
+            {"box_id":"8", "box_name":"restricoes"},
+            {"box_id":"10", "box_name":"riscos"},
+            {"box_id":"11", "box_name":"tempo"},
+            {"box_id":"12", "box_name":"custos"}   
+        ],
+        
+    "Postit":
+        [     
+            {"box_id":"", "user_id":"", "postit_id":"", "postit_text":""}                    
+        ],
+        
+    "User":
+        [
+            {"user_id":"", "user_name":""}
+        ]
+        
+}
+

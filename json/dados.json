@@ -1,0 +1,100 @@
+{
+    "canvas_id":"1",
+    "canvas_name":"Projeto Eu Magro",
+    "manager_id":"1",
+    "manager_name":"Filipe",
+ 
+
+    "Box":
+        [
+            {"box_id":"0", "box_name":"justificativas"},
+            {"box_id":"1", "box_name":"objsmart"},
+            {"box_id":"2", "box_name":"beneficios"},
+            {"box_id":"3", "box_name":"produto"},
+            {"box_id":"4", "box_name":"requisitos"},
+            {"box_id":"5", "box_name":"stakeholders"},
+            {"box_id":"6", "box_name":"equipe"},
+            {"box_id":"7", "box_name":"premissas"},
+            {"box_id":"8", "box_name":"entregas"},
+            {"box_id":"8", "box_name":"restricoes"},
+            {"box_id":"10", "box_name":"riscos"},
+            {"box_id":"11", "box_name":"tempo"},
+            {"box_id":"12", "box_name":"custos"}   
+        ],
+        
+    "Postit":
+        [     
+            {"box_id":"0", "user_id":"1", "postit_id":"1", "postit_text":"Colesterol Aumentado"},
+            {"box_id":"0", "user_id":"1", "postit_id":"2", "postit_text":"Mobilidade reduzida"},
+            {"box_id":"0", "user_id":"1", "postit_id":"3", "postit_text":"Imagem mal cuidada"},
+            {"box_id":"0", "user_id":"1", "postit_id":"4", "postit_text":"Roupas não vestem"},
+            
+            {"box_id":"1", "user_id":"2", "postit_id":"5", "postit_text":"Emagrecer 10kg com saúde até 28fev, tendo apoio multidisciplinar e incorporando hábitos saudáveis gastando até R$6.500"},
+            
+            {"box_id":"2", "user_id":"1", "postit_id":"6", "postit_text":"Volta do colesterol à normalidade"},
+            {"box_id":"2", "user_id":"2", "postit_id":"7", "postit_text":"Redução da probalidade de doenças"},         
+            {"box_id":"2", "user_id":"1", "postit_id":"8", "postit_text":"Redução de gastos com saúde em R$80 mil (horizonte 5 anos)"},
+            {"box_id":"2", "user_id":"2", "postit_id":"9", "postit_text":"Irei inspirar família, amigos e colegas"},
+            {"box_id":"2", "user_id":"1", "postit_id":"10", "postit_text":"Aumento da receita nos negócios por meio da melhora da imagem"},
+
+            {"box_id":"3", "user_id":"1", "postit_id":"11", "postit_text":"Eu reeducado e 10kg mais magro"},
+
+            {"box_id":"4", "user_id":"2", "postit_id":"12", "postit_text":"IMC não deve ficar acima de 25"},
+            {"box_id":"4", "user_id":"1", "postit_id":"13", "postit_text":"Percentual de gordura corporal deve ficar menor que 24%"},
+            {"box_id":"4", "user_id":"2", "postit_id":"14", "postit_text":"Dieta adquirida deve ficar em 2000cal/dia"},
+            {"box_id":"4", "user_id":"1", "postit_id":"15", "postit_text":"Nova rotina incorporada 30min de esporter 5x por semana"},
+            {"box_id":"4", "user_id":"2", "postit_id":"16", "postit_text":"Novo hábito alimentar rico em fibras, pobre em gordura e açúcar"},
+
+            {"box_id":"5", "user_id":"1", "postit_id":"17", "postit_text":"Esposa"},
+            {"box_id":"5", "user_id":"2", "postit_id":"18", "postit_text":"Mãe"},
+            {"box_id":"5", "user_id":"1", "postit_id":"19", "postit_text":"Colegas do happy hour"},
+            {"box_id":"5", "user_id":"2", "postit_id":"20", "postit_text":"Amigos esportistas"},
+            {"box_id":"5", "user_id":"1", "postit_id":"21", "postit_text":"Clima (Fator externo)"},
+            {"box_id":"5", "user_id":"2", "postit_id":"22", "postit_text":"Ritmo do trabalho (fator externo)"},
+
+            {"box_id":"6", "user_id":"1", "postit_id":"23", "postit_text":"Mamma não vai forçar a barra com suas tradicionais sobremesas"},
+            {"box_id":"6", "user_id":"2", "postit_id":"24", "postit_text":"Colgas de trabalho irão apoiar a nova atidue abstêmica"},
+            {"box_id":"6", "user_id":"1", "postit_id":"25", "postit_text":"Teremos mais de 90% dos dias de treinamento sem chuva pesada"},
+
+            {"box_id":"7", "user_id":"2", "postit_id":"26", "postit_text":"Eu (gerente do projeto)"},
+            {"box_id":"7", "user_id":"1", "postit_id":"27", "postit_text":"Médico"},
+            {"box_id":"7", "user_id":"2", "postit_id":"28", "postit_text":"Nutricionista"},
+            {"box_id":"7", "user_id":"1", "postit_id":"29", "postit_text":"Treinador Físico"},
+
+            {"box_id":"8", "user_id":"1", "postit_id":"30", "postit_text":"Gestão do projeto"},
+            {"box_id":"8", "user_id":"2", "postit_id":"31", "postit_text":"Apoio médico"},
+            {"box_id":"8", "user_id":"1", "postit_id":"32", "postit_text":"Reeducação alimentar"},
+            {"box_id":"8", "user_id":"2", "postit_id":"33", "postit_text":"Aquisições"},
+            {"box_id":"8", "user_id":"1", "postit_id":"34", "postit_text":"Exercícios físicos"},
+
+            {"box_id":"9", "user_id":"2", "postit_id":"35", "postit_text":"Não posso gastar mais que R$ 6.500 nos 4 meses de programa"},
+            {"box_id":"9", "user_id":"1", "postit_id":"36", "postit_text":"O treino terá de ser fora do horário comercial"},
+            {"box_id":"9", "user_id":"2", "postit_id":"37", "postit_text":"50% do treino tem que ser na academia do meu condomínio"},
+
+            {"box_id":"10", "user_id":"1", "postit_id":"38", "postit_text":"Causa: Sou radical e ancioso. Risco: Ficas doente devido dieta exagerada. Efeito: Cancelamento do Projeto"},
+            {"box_id":"10", "user_id":"2", "postit_id":"39", "postit_text":"Causa: Pouco costume a exercício. Risco: Lesão com paralisação do treino. Efeito: diminuição do resultado"},
+            {"box_id":"10", "user_id":"1", "postit_id":"40", "postit_text":"Causa: Mamma me vê subnitrido e insiste. Risco: querbra da dieta e devoro sobremesas. Efeito: pedra da eficiência da dieta"},
+
+            {"box_id":"11", "user_id":"2", "postit_id":"41", "postit_text":"Gestão do Projeto"},
+            {"box_id":"11", "user_id":"1", "postit_id":"42", "postit_text":"Apoio Médico"},
+            {"box_id":"11", "user_id":"2", "postit_id":"43", "postit_text":"Reeducação Alimentar"},
+            {"box_id":"11", "user_id":"1", "postit_id":"44", "postit_text":"Aquisições"},
+            {"box_id":"11", "user_id":"2", "postit_id":"45", "postit_text":"Exercícios físicos"},
+
+            {"box_id":"12", "user_id":"1", "postit_id":"46", "postit_text":"1.R$90(mat.) + R$300(m.obra)---R$390"},
+	    {"box_id":"12", "user_id":"2", "postit_id":"47", "postit_text":"2.R$1100(serviços)---R$1100"},
+	    {"box_id":"12", "user_id":"1", "postit_id":"48", "postit_text":"3.R$750(mat.)+R$450(serv.)---R$1.200"},
+	    {"box_id":"12", "user_id":"2", "postit_id":"49", "postit_text":"4.R$500(mat)+R$1000(eqpto)---R$1500"},
+	    {"box_id":"12", "user_id":"1", "postit_id":"46", "postit_text":"5.R$1.400(serviços)---R$1.400"},
+    	    {"box_id":"12", "user_id":"1", "postit_id":"46", "postit_text":"6.+ reserva---R$560"},
+	    {"box_id":"12", "user_id":"1", "postit_id":"46", "postit_text":"7.Total---R$6.160"}
+        ],
+        
+    "User":
+        [
+            {"user_id":"1", "user_name":"Filipe Arantes"},
+            {"user_id":"2", "user_name":"Leonardo Barroso"}
+        ]
+        
+}
+

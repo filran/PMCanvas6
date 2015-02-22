@@ -1,0 +1,45 @@
+{
+    "canvas_id":"Teste",
+    "canvas_name":"",
+    "manager_id":"",
+    "manager_name":"",
+    
+    "Box":
+        [
+            {"box_id":"1", "box_name":"justificativas"},
+            {"box_id":"2", "box_name":"objsmart"},
+            {"box_id":"3", "box_name":"beneficios"},
+            {"box_id":"4", "box_name":"produto"},
+            {"box_id":"5", "box_name":"requisitos"},
+            {"box_id":"6", "box_name":"stakeholders"},
+            {"box_id":"7", "box_name":"equipe"},
+            {"box_id":"8", "box_name":"premissas"},
+            {"box_id":"9", "box_name":"entregas"},
+            {"box_id":"10", "box_name":"restricoes"},
+            {"box_id":"11", "box_name":"riscos"},
+            {"box_id":"12", "box_name":"tempo"},
+            {"box_id":"13", "box_name":"custos"}   
+        ],
+        
+    "Postit":
+        [
+            {"box_id":"1", "user_id":"1", "postit_id":"1", "postit_text":"Colesterol Aumentado"},
+            {"box_id":"1", "user_id":"1", "postit_id":"2", "postit_text":"Colesterol Aumentado"},
+            {"box_id":"1", "user_id":"1", "postit_id":"3", "postit_text":"Colesterol Aumentado"},
+            {"box_id":"1", "user_id":"1", "postit_id":"4", "postit_text":"Imagem mal cuidada"},
+            {"box_id":"1", "user_id":"1", "postit_id":"5", "postit_text":"Imagem mal cuidada"},
+            {"box_id":"1", "user_id":"1", "postit_id":"6", "postit_text":"Imagem mal cuidada"},
+            {"box_id":"1", "user_id":"1", "postit_id":"7", "postit_text":"Imagem mal cuidada"},
+
+            {"box_id":"2", "user_id":"2", "postit_id":"8", "postit_text":"Emagrecer 10kg com saúde até 28fev, tendo apoio mu"},
+            {"box_id":"2", "user_id":"2", "postit_id":"9", "postit_text":"Emagrecer 10kg com saúde até 28fev, tendo apoio mu"}            
+        ],
+        
+    "User":
+        [
+            {"user_id":"1", "user_name":"Filipe Arantes"},
+            {"user_id":"2", "user_name":"Leonardo Barroso"}
+        ]
+        
+}
+
