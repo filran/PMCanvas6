@@ -1,17 +1,19 @@
 <?php
 include("../config/config.php");
 
-#$data = array('canvas_ticket'=>array(
-#		'text'=>$_GET["text"],
-#		'canvas_box_id'=>$_GET["canvas_box_id"],
-#		'canvas_project_id'=>$_GET["canvas_projects_id"])
-#	);
 
-$data = array('canvas_ticket'=>array(
-		'text'=>$_GET["text"],
-		'canvas_box_id'=>$_GET["canvas_box_id"],
-		'canvas_project_id'=>$_GET["canvas_project_id"])
-	);
+$data = array( $_SESSION["box"][0] => array(
+			"data_inicio" => $_GET["data_inicio"],
+			"data_fim" => $_GET["data_fim"],
+			"text" => $_GET["text"],
+			"quantidade" => $_GET["quantidade"],
+			"valor" => $_GET["valor"],
+			"causa" => $_GET["causa"],
+			"efeito" => $_GET["efeito"],	
+			"canvas_box_id" => $_GET["canvas_box_id"],
+			"canvas_project_id" => $_GET["canvas_project_id"],
+			"canvas_ticket_id" => $_GET["canvas_ticket_id"]          
+        ));
                                                          
 $data_string = json_encode($data);  
 
@@ -26,5 +28,5 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array(
     'Content-Length: ' . strlen($data_string))                                                                       
 );                                                                                                                   
  
-$result = curl_exec($ch);
+echo $result = curl_exec($ch);
 ?>

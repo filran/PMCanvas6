@@ -28,11 +28,21 @@
             var selector = "li[postit-id="+id+"]";
             var selectorbig = "div[bigpostit-id="+id+"]";
             var time = 100; 
-            var content = $(selector).text(); 
+            var content = $(selector).html(); 
 
 			var project_id = $("#dados_projeto").attr("project_id");
 			var canvas_id  = $("#dados_canvas").attr("canvas_id"); 
 			var canvas_box_id = $(this).parent().parent().attr("canvas_box_id");
+
+			var data_inicio = null;
+			var data_fim = null;
+			var causa = null;
+			var efeito = null;
+			var valor = null;
+			var quantidade = null;
+			var canvas_ticket_id = null;
+
+			var fechar_tipo = "fechar"; 
 
             $(selector).animate({"opacity":"0"});
             $("div[bigpostit-id]").attr("bigpostit-id",id);            
@@ -44,7 +54,33 @@
                 .append("<div><a href='#' id='fechar'><img src='imagens/icones/right.png'/></a></div>") //Botão Fechar
                 .append("<div><a href='#' id='abrirteclado'><img src='imagens/icones/keyboard.png'/></a></div>")
                 .append("<div><a href='#' id='excluir'><img src='imagens/icones/dustbin.png'/></a></div>")
-                .append("<div id='wrapconteudopostit'><p id='conteudopostit' class='write' contenteditable='true'>"+content+"</p></div>");
+
+				if( canvas_box_id==12 ){ //LINHA DO TEMPO
+					if( content != "" ){
+						d = bordertoinput(content);
+						data_inicio = bordertodesk(d[0]);
+						data_fim = bordertodesk(d[1]);
+					}
+				
+					conteudo_data = "<div id='data_div' name='data_div'><div><label>Grupo de Entregas:</label><br><select id='entrega' name='entrega'><select></div><div><label>Data início:</label><br><input type='date' id='data_inicio' name='data_inicio' value='"+data_inicio+"'/></div><div><label>Data fim:</label><br><input type='date' id='data_fim' name='data_fim' value='"+data_fim+"'/></div></div>";
+					getentregas(project_id,canvas_id); //carrega as Entregas
+					gettempo(project_id,canvas_id,id); //carrega das datas e selecioa entrega
+					
+					$(".bigpostit").append("<div id='wrapconteudopostit'>"+conteudo_data+"</div>");
+
+				}else if(canvas_box_id==13){ //CUSTOS
+					conteudo_data = "<div><label>Texto:</label><br><input type='text' id='text_custo' name='text_custo' value=''></div><div><label>Quantidade:</label><br><input type='number' id='quantidade' name='quantidade' value=''></div><div><label>Valor:</label><br><input type='number' id='valor' name='valor' value=''></div>";
+					
+					$(".bigpostit").append("<div id='wrapconteudopostit'>"+conteudo_data+"</div>");
+
+					getOneCusto(project_id,canvas_id,id);
+
+				}else{
+
+					$(".bigpostit").append("<div id='wrapconteudopostit'><p id='conteudopostit' class='write' contenteditable='true'>"+content+"</p></div>");
+				}
+                
+               
 
             //CENTRALIZAR CONTEUDO DO POST-IT
             centralizar_conteudopostit();
@@ -86,26 +122,78 @@
 
             //CLOSE
             $(".bigpostit > div").on("click","#fechar",function(){
+            	
 				if( tipo=="postit" ){
 					//ATUALIZAR EDIÇÃO DE POSTIT NO SERVIDOR
 					if( content == "" ){
 						//NOVO POSTIT
 					}else{
 						//POSTIT RECUPERADO DO SERVIDOR
-						var depois = $("#conteudopostit").text();
+						var depois = $("#conteudopostit").html();
+
+						if ( canvas_box_id == 12 ){ //TEMPO
+							data_inicio = putdate($("#data_inicio").val());
+							data_fim = putdate($("#data_fim").val());
+							canvas_ticket_id = $("#entrega option:selected").attr("value");
+							fechar_tipo = "tempo";
+
+							//alert(canvas_ticket_id);
+
+							putTicket(project_id,canvas_id,canvas_box_id,data_inicio,data_fim,depois,causa,efeito,quantidade,valor,canvas_ticket_id,id);
+						}
+
+						if( canvas_box_id == 13 ){	
+							depois = $("#text_custo").val();
+							quantidade = $("#quantidade").val();
+							valor = $("#valor").val();
+							fechar_tipo = "custos";
+
+							putTicket(project_id,canvas_id,canvas_box_id,data_inicio,data_fim,depois,causa,efeito,quantidade,valor,canvas_ticket_id,id);
+						}
 			
 						//se houver diferença enviar para servidor
 						if( content != depois ){
-							putTicket(project_id,canvas_id,id,depois);
-						}		
+							//putTicket(project_id,canvas_id,id,depois);
+
+							if( canvas_box_id==11 ){
+								t = separaterisk(depois);
+								depois = t["risco"];
+								causa = t["causa"];
+								efeito = t["efeito"];
+							}
+
+							putTicket(project_id,canvas_id,canvas_box_id,data_inicio,data_fim,depois,causa,efeito,quantidade,valor,canvas_ticket_id,id);
+						}
 					}
 				}else if( tipo=="newpostit" ){
-					var depois = $("#conteudopostit").text();
+				
+					var depois = $("#conteudopostit").html();
 
+					if( canvas_box_id==11 ){ //RISCO
+						t = separaterisk_post(depois);
+						depois = t["risco"];
+						causa = t["causa"];
+						efeito = t["efeito"];
+					}
+
+					if( canvas_box_id==12 ){ //TEMPO
+						data_inicio = bordertodesk($("#data_inicio").val());
+						data_fim = bordertodesk($("#data_fim").val());
+						canvas_ticket_id = $("#entrega option:selected").attr("value");
+						fechar_tipo = "tempo";
+					}
+
+					if( canvas_box_id == 13 ){	
+						depois = $("#text_custo").val();
+						quantidade = $("#quantidade").val();
+						valor = $("#valor").val();
+						fechar_tipo = "custos";
+					}
+					
 					//gravar ticket soa
-					postTicket(project_id,canvas_id,canvas_box_id,depois);
+					postTicket(project_id,canvas_id,canvas_box_id,data_inicio,data_fim,depois,causa,efeito,quantidade,valor,canvas_ticket_id);
 				}
-                fechar_postit("fechar");  
+                fechar_postit(fechar_tipo);  
             });
             
         }else if(tipo=="area"){
@@ -117,7 +205,7 @@
             var selector = "#area li[id="+id+"]";
             var selectorbig = "div[bigareacanvas-id=big_"+id+"]";
             var time = 100; 
-            var tituloarea = $(selector+" h1").text();
+            var tituloarea = $(selector+" h1").html();
             var conteudo = $(selector+" > ul.receberpostit > li");  
 
             $(selector).animate({"opacity":"0"});
@@ -169,7 +257,7 @@
         //fechar postit
         function fechar_postit(tipo){
 
-            if( tipo=="fechar" || tipo=="excluir" ){  
+            if( tipo=="fechar" || tipo=="excluir" || tipo=="tempo" || tipo=="custos"){  
                 $(selectorbig+".bigpostit").animate({"opacity":"0"},time, function(){
                     $(this).remove();     
                     $(".backgroundexpand").animate({"background-color":"rgba(0,0,0,0)"}).css({"z-index":"-1"},time,function(){
@@ -185,12 +273,21 @@
                 //$("#container_keyboard").removeAttr("style");
         
                 //atualizar conteudo do postit OU excluir
-                conteudo = $("#conteudopostit").text();
+                conteudo = $("#conteudopostit").html();
                 if(conteudo=="" || tipo=="excluir"){
                     $(selector).remove();
-                }else{
+                }else if ( tipo=="fechar" ){
                     $(selector).html(conteudo);
-                } 
+                }else if( tipo=="tempo" ){
+                	data_inicio = bigtocanvas($("#data_inicio").val());
+                	data_fim = bigtocanvas($("#data_fim").val());
+                	$(selector).html(data_inicio+" a "+data_fim);               	
+                }else if( tipo=="custos" ){
+					depois = $("#text_custo").val();
+					quantidade = $("#quantidade").val();
+					valor = $("#valor").val();
+					$(selector).html( depois+": "+quantidade+" x "+"R$ "+valor );
+                }
             }
         }
             

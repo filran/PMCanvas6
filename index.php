@@ -66,6 +66,7 @@ header('Access-Control-Allow-Origin: *');
 	<script type="text/javascript" src="json/get_projects.js"></script>-->
 
 	<script type="text/javascript">
+	
 		$(function(){
 			$.support.cors = true;
 			//var dominio = "http://localhost/PMCanvas5.0/";
@@ -97,7 +98,7 @@ header('Access-Control-Allow-Origin: *');
 	<div id="main">
 		<div id="header"><img src="imagens/pmcanvas.png" /><h1>PMCanvas<br>Modo Quadro Interatito</h1></div>
 		<div id="formulario">
-			<form method="">
+			<form method="" target="_blank">
 				<select name="projetos" id="projetos">
 					<option value="-1">Escolha um projeto</option>
 					<option value="0">----------</option>					

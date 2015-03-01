@@ -2,7 +2,7 @@
 
 (function atualiza(){
 	//var dominio = "http://localhost/ws_gestaointegrada/";
-	var time = 5000;
+	var time = 1000000;
 	var project_id = $("#dados_projeto").attr("project_id");
 	var canvas_id  = $("#dados_canvas").attr("canvas_id");
 	var url = dominio+"projects/"+project_id+"/canvas_projects/"+canvas_id+"/canvas_tickets.json?key="+key;

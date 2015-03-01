@@ -1,0 +1,44 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta charset='utf-8'/>
+
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='../../scripts/soa.js'></script>
+
+<style>
+
+</style>
+
+<script type='text/javascript'>
+$(function(){
+
+	var url = "http://localhost:8080/PMCanvas6/phpsoa/getoneticket.php?projects_id=10&canvas_projects_id=14&id=171";
+
+	$.ajax({
+		async: false,
+		type: "GET",
+		url: url,
+		dataType: "json",
+		success: function(json){
+			$("#text_custo").attr("value",json.text);
+			$("#quantidade").attr("value",json.quantidade);
+			$("#valor").attr("value",json.valor);
+			//$("body").append(json.text);
+		}
+		
+	});
+	
+});
+
+</script>
+
+</head>
+<body>
+
+<div><label>Texto:</label><br><input type='text' id='text_custo' name='text_custo' value='' /></div>
+<div><label>Quantidade:</label><br><input type='number' id='quantidade' name='quantidade' value='' /></div>
+<div><label>Valor:</label><br><input type='number' id='valor' name='valor' /></div>
+
+</body>
+</html>

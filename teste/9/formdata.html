@@ -1,0 +1,61 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta charset='utf-8'/>
+
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+<style>
+	input, select{
+		font-size:14pt;
+	}
+</style>
+
+<script type='text/javascript'>
+$(function(){
+
+	$('#enviar').click(function(){
+		alert($('#data_inicio').val());	
+		//$("#entregas").val("tres");
+
+		
+	});
+	
+});
+
+var data = "01/01/2015 a 01/02/2016";
+function bordertoinput(data){
+	data = data.split(" a ");
+	return data;
+}
+
+
+
+</script>
+
+</head>
+<body>
+
+<div>
+<label>Grupo de Entregas:</label>
+<select id='entregas' name='entregas'>
+	<option value='um'>um</option>
+	<option value='dois'>dois</option>
+	<option value='tres'>três</option>
+<select>
+</div>
+
+<div>
+<label>Data início:</label>
+<input type='date' id='data_inicio' name='data_inicio' value=''/>
+</div>
+
+<div>
+<label>Data fim:</label>
+<input type='date' id='data_inicio' name='data_inicio' value=''/>
+</div>
+
+<p id='enviar' name='enviar'>Enviar</p>
+
+</body>
+</html>

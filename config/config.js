@@ -7,7 +7,8 @@ var dominio = "http://leonbsilva.ddns.net:8080/";
 var key = "1708de85ebd115e4ab7c79824cdbdc849c79f6e9";
 
 //url da API
-var path = "http://odysseus-lens.ddns.net/PMCanvas6/";
+//var path = "http://odysseus-lens.ddns.net/PMCanvas6/";
+var path = "http://localhost:8080/PMCanvas6/";
 
 
 

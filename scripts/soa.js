@@ -97,6 +97,8 @@ function getTickets(){
 		.done(function(data){
 			for(i=0; i<data.length; i++){
 				var box_id = data[i].canvas_box_id;
+				var data_inicio = desktoborder(data[i].data_inicio);
+				var data_fim = desktoborder(data[i].data_fim);				
 				var postit_html = '<li postit-id="'+data[i].id+'" class="postit" autor="" areacandidata="" style="display: block; z-index: 1;">'+data[i].text+'</li>';
 
 				//JUST
@@ -120,11 +122,15 @@ function getTickets(){
 					$("#entregas .receberpostit").append(postit_html);
 				}else if( box_id == 10 ){
 					$("#restricoes .receberpostit").append(postit_html);
-				}else if( box_id == 11 ){
+				}else if( box_id == 11 ){//RISCOS
+					var riscos = "Risco:"+data[i].text+"<br>Causa:"+data[i].causa+"<br>Efeito:"+data[i].efeito;
+					var postit_html = '<li postit-id="'+data[i].id+'" class="postit" autor="" areacandidata="" style="display: block; z-index: 1;">'+riscos+'</li>';				
 					$("#riscos .receberpostit").append(postit_html);
-				}else if( box_id == 12 ){
+				}else if( box_id == 12 ){ // TEMPO				
+					var postit_html = '<li postit-id="'+data[i].id+'" class="postit" autor="" areacandidata="" style="display: block; z-index: 1;">'+data_inicio+' a '+data_fim+'</li>';				
 					$("#tempo .receberpostit").append(postit_html);
 				}else if( box_id == 13 ){
+					var postit_html = '<li postit-id="'+data[i].id+'" class="postit" autor="" areacandidata="" style="display: block; z-index: 1;">'+data[i].text+': '+data[i].quantidade+' x R$ '+data[i].valor+'</li>';
 					$("#custos .receberpostit").append(postit_html);
 				}
 			}
@@ -133,10 +139,10 @@ function getTickets(){
 }
 
 
-function postTicket(project_id,canvas_id,canvas_box_id,depois){
+function postTicket(project_id,canvas_id,canvas_box_id,data_inicio,data_fim,depois,causa,efeito,quantidade,valor,canvas_ticket_id){
 	$.ajax({
 		type: "POST",
-		url: path+"phpsoa/postticket.php?projects_id="+project_id+"&canvas_project_id="+canvas_id+"&canvas_box_id="+canvas_box_id+"&text="+depois,
+		url: path+"phpsoa/postticket.php?projects_id="+project_id+"&canvas_project_id="+canvas_id+"&canvas_box_id="+canvas_box_id+"&data_inicio="+data_inicio+"&data_fim="+data_fim+"&text="+depois+"&causa="+causa+"&efeito="+efeito+"&quantidade="+quantidade+"&valor="+valor+"&canvas_ticket_id="+canvas_ticket_id,
 		contentType: "application/json",
 		dataType: "jsonp"/*,
 		error: function(jqXHR, textStatus, errorThrown){
@@ -158,10 +164,10 @@ function deleteTicket(project_id,canvas_id,id){
 }
 
 
-function putTicket(project_id,canvas_id,id,depois){
+function putTicket(project_id,canvas_id,canvas_box_id,data_inicio,data_fim,depois,causa,efeito,quantidade,valor,canvas_ticket_id,id){
 	$.ajax({
 		type: "PUT",
-		url: path+"phpsoa/putticket.php?projects_id="+project_id+"&canvas_project_id="+canvas_id+"&id="+id+"&text="+depois,
+		url: path+"phpsoa/putticket.php?projects_id="+project_id+"&canvas_project_id="+canvas_id+"&canvas_box_id="+canvas_box_id+"&data_inicio="+data_inicio+"&data_fim="+data_fim+"&text="+depois+"&causa="+causa+"&efeito="+efeito+"&quantidade="+quantidade+"&valor="+valor+"&canvas_ticket_id="+canvas_ticket_id+"&id="+id,
 		contentType: "application/json",
 		dataType: "jsonp"
 	});
@@ -169,3 +175,42 @@ function putTicket(project_id,canvas_id,id,depois){
 }
 
 
+function getentregas(project_id,canvas_id){
+	$.getJSON( path+"phpsoa/getentregas.php?projects_id="+project_id+"&canvas_projects_id="+canvas_id , {format:"json"} )
+		.done(function(json){
+			for(i=0; i<json.length; i++){
+				$("#entrega").append("<option value='"+json[i].id+"'>"+json[i].text+"</option>");
+			}
+		})
+	;
+}
+
+
+function gettempo(project_id,canvas_id,id){
+	$.getJSON( path+"phpsoa/gettempo.php?projects_id="+project_id+"&canvas_projects_id="+canvas_id+"&id="+id , {format:"json"} )
+		.done(function(json){
+			$("#data_inicio").val(troca(json[0].data_inicio));
+			$("#data_fim").val(troca(json[0].data_fim));
+			$("#entrega").val(json[0].canvas_ticket_id); //seleciona entrega que foi vinculado
+		})
+	;
+}
+
+
+function getOneCusto(project_id,canvas_id,id){
+
+	var url = path+"phpsoa/getoneticket.php?projects_id="+project_id+"&canvas_projects_id="+canvas_id+"&id="+id;
+
+	$.ajax({
+		async: false,
+		type: "GET",
+		url: url,
+		dataType: "json",
+		success: function(json){
+			$("#text_custo").attr("value",json.text);
+			$("#quantidade").attr("value",json.quantidade);
+			$("#valor").attr("value",json.valor);
+		}
+	});		
+
+}

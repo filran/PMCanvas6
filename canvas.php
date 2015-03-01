@@ -49,12 +49,18 @@
 	<!--Mock-->
 	<script type="text/javascript" src="scripts/mockjax/jquery.mockjax.js"></script>
 	<script type="text/javascript" src="scripts/mockjax/lib/json2.js"></script> 
+
+	<!--Convertdate-->
+	<script type="text/javascript" src="scripts/convertdate.js"></script>
+
+	<!--Sparete Risk-->
+	<script type="text/javascript" src="scripts/separaterisk.js"></script>
     
     <script type="text/javascript">              
         $(function(){  
+        
         	//obtendo os tickets
 			getTickets();
-
         
 			//var dominio = "http://localhost/PMCanvas5.0/";
 			//var dominio = "http://odysseus-lens.ddns.net/PMCanvas5.0/";
@@ -95,6 +101,7 @@
             //#AREA > LI > UL.RECEBERPOSTIT=======================================
             $( "#area > li > ul.receberpostit" )
                 .on("mouseup","li",function(){
+
                     atualizar_areacandidata(this);
                 })
 
