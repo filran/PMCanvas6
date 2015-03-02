@@ -59,6 +59,10 @@
 		}
 		//resp+="\nPostit em P's: "+postit_candidato_id.length+"\n";
 
+		//////////////////////////////////////////////////////////////////////////////////////////////////
+		///// FUNÇÃO QUE ESTARÁ 
+		
+
 
 		//DIFF BD e CANVAS
 		if( postit_bd_id.length > qtd_postit_canvas ){

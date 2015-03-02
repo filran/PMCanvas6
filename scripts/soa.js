@@ -101,6 +101,8 @@ function getOneTicket(project_id,canvas_id,id){
 		.done(function(data){
 			$("#postits ul").append('<li postit-id="'+data.id+'" class="postit" autor="" areacandidata="'+areacandidata[data.canvas_box_id]+'">'+data.text+'</li>');
 
+			carregandooff();
+
 
 			//mudar fundo do box quando receber algum post-it candidato
 			var cbi = data.canvas_box_id; //areacandidata
@@ -116,7 +118,6 @@ function getOneTicket(project_id,canvas_id,id){
 				"backgroundColor": coratual
 			},750);
 
-			carregandooff();
 		})
 	;
 	
@@ -220,6 +221,34 @@ function deleteTicket(project_id,canvas_id,id){
 	});
 	
 }
+
+
+
+
+
+function deleteTickets(project_id,canvas_id,ids){
+
+	for( i=0; i<ids.length; i++ ){
+	
+		$.ajax({
+			type: "delete",
+			url: path+"phpsoa/deleteticket.php?projects_id="+project_id+"&canvas_project_id="+canvas_id+"&id="+ids[i],
+			contentType: "application/json",
+			dataType: "jsonp",
+			beforeSend: function(){
+				carregandoon();
+			},
+			complete: function(){
+				carregandooff();
+			}
+		});
+
+	}
+	
+}
+
+
+
 
 
 function putTicket(project_id,canvas_id,canvas_box_id,data_inicio,data_fim,depois,causa,efeito,quantidade,valor,canvas_ticket_id,id){

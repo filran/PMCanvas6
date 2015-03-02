@@ -56,7 +56,7 @@
 	<!--Sparete Risk-->
 	<script type="text/javascript" src="scripts/separaterisk.js"></script>
     
-    <script type="text/javascript">              
+    <script type="text/javascript">                  
         $(function(){  
         	carregandooff();
 
@@ -271,6 +271,10 @@
 				}
 			});
 
+			$("#save").click(function(){
+				save();
+			});
+
 
             //FUNÇÕES==============================
             //ID ÚNICO (construido por data, mês, ano, hora, minuto, segundos, milisegundos e index)
@@ -336,33 +340,32 @@
             function atualizar_areacandidata(seletor){
                 var id = $(seletor).parent().parent().get(0).id; //id area
                 $(seletor).attr("areacandidata",id);
-
-                /*if( id!="riscos" || id!="tempo" || id!="custos" ){
-		            data_inicio = null;
-		            data_fim = null; 
-		            causa = null;
-		            efeito = null;
-		            quantidade = null;
-		            valor = null;
-		            canvas_ticket_id = null;		                           	
-                }
-
-                if(id=="just"){
-					canvas_box_id = 1;
-                }else if(id=="obj"){
-                	canvas_box_id = 2;
-                }
-
-	            depois = $(seletor).html();
-				idpostit = $(seletor).attr("postit-id");*/
-
-				//alert( id+"-"+canvas_box_id );
-
-                //putTicket(project_id,canvas_id,canvas_box_id,data_inicio,data_fim,depois,causa,efeito,quantidade,valor,canvas_ticket_id,idpostit);
             }
 
 
+			$(window).on("beforeunload",function(){
+				var qtd_postit_cand = $("#postits ul li").size();
+				if( qtd_postit_cand > 1 ){
+					return "Há post-its aguardando serem aprovados. Caso não faça alguma alteração eles serão automaticamente salvos em suas respectivas áreas.";
+				}else if( qtd_postit_cand==1 ){
+					return "Há 1 post-it aguardando ser aprovado. Caso não faça alguma alteração ele será automaticamente salvo em sua respectiva área.";
+				}
+
+			});
+			
+
+			$( window ).on("unload",function() {
+				//deleteTickets(10,14,postit_canvas_id);								
+			});
+
+			
+
+			
+			
+
         });
+
+        
      </script>
 
 <style type="text/css">
@@ -407,6 +410,10 @@
 <body>
 <div id="carregando" name="carregando">Carregando...</div>
 
+<div id="dialog_save" title="Salvar Canvas" style="visibility:hidden; position:absolute">
+	<p id="conteudo">Há post-its em P's. Ao sair eles serão excluídos. Tem certeza que deseja sair?</p>
+</div>
+
 
 <div id="dados" style="visibility:visible; position:none">
 	<span id="dados_projeto" project_id="<?php echo $_POST['projetos']; ?>"></span>
@@ -416,7 +423,7 @@
 
 <div id="menulateral">
 	<div id="menuitens" status="hidden">
-		<a href="#"><img src="imagens/icones/save.png" width="40" height="40"></a>
+		<a href="#"><img id="save" name="save" src="imagens/icones/save.png" width="40" height="40"></a>
 		<a href="#"><img src="imagens/icones/user.png" width="40" height="40"></a>
 		<a href="#"><img src="imagens/icones/user.png" width="40" height="40"></a>
 		<a href="#"><img src="imagens/icones/user.png" width="40" height="40"></a>

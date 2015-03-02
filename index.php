@@ -101,7 +101,7 @@ header('Access-Control-Allow-Origin: *');
 	<div id="main">
 		<div id="header"><img src="imagens/pmcanvas.png" /><h1>PMCanvas<br>Modo Quadro Interatito</h1></div>
 		<div id="formulario">
-			<form method="" target="_blank">
+			<form method="">
 				<select name="projetos" id="projetos">
 					<option value="-1">Escolha um projeto</option>
 					<option value="0">----------</option>					
