@@ -1,0 +1,93 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta charset='utf-8'/>
+
+<!--jQuery 2.1-->
+<script type="text/javascript" src="../../scripts/jquery/jquery-2.1.0.js"></script>        
+ 
+<script type="text/javascript" src="../../scripts/jquery-ui/jquery-ui-1.10.4.custom.js"></script>
+<link type="text/css" rel="stylesheet" href="../../scripts/jquery-ui/jquery-ui-1.10.4.custom.css">
+
+<style>
+
+</style>
+
+<script type='text/javascript'>
+$(function(){
+	bd =  ["100","101","102","103","104","105"];
+	box = ["100","101","102","103"];
+	cand = ["104"];
+	novo = [];
+	resp="";
+
+
+	//DIFF BD e BOX
+	if( bd.length > box.length ){
+		//alert("Opa! Chegaram mais post-its!");
+		//Conferir quem é que que chegou
+		for(i=0; i<bd.length; i++){
+			
+			for(j=0; j<box.length; j++){
+
+				if( bd[i]==box[j] ){ //se houver post-its iguais, deletar do BD
+					bd.splice(i,1);
+				}	
+							
+			}
+		}
+
+
+
+		//DIFF BD e CAND
+		if( cand.length > 0 ){
+			for(i=0; i<bd.length; i++){
+
+				for(j=0; j<cand.length; j++){
+
+					if( bd[i]==cand[j] ){
+						bd.splice(i,1);
+					}
+				
+				}
+			
+			}
+		}
+	}
+
+	/*for(i=0; i<bd.length; i++){
+		resp+= bd[i]+", ";
+	}*/
+
+
+
+
+	if( bd.length > 0 ){
+		for(i=0; i<bd.length; i++){
+			cand.push( bd[i] );
+		}		
+	}else{
+		resp+="Nenhum novo!";
+	}
+
+	
+
+
+	resp="";
+	if( cand.length > 0 ){
+		for(i=0; i<cand.length; i++){
+			resp+=cand[i]+", ";
+		}
+	}
+	
+	alert(resp);
+	
+});
+
+</script>
+
+</head>
+<body>
+	
+</body>
+</html>

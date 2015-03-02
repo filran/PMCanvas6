@@ -6,9 +6,9 @@
 	var project_id = $("#dados_projeto").attr("project_id");
 	var canvas_id  = $("#dados_canvas").attr("canvas_id");
 	var url = dominio+"projects/"+project_id+"/canvas_projects/"+canvas_id+"/canvas_tickets.json?key="+key;
-	var postit_bd_id = []; //todos os post-its que estão no BD
-	var postit_canvas_id = []; //todos os que estão alocados em algum BOX
-	var postit_candidato_id = []; //post-its que estão aguardando serem add ao BOX
+	var postit_bd_id = [];
+	var postit_canvas_id = [];
+	var postit_candidato_id = [];
 	var postit_equal = []; //armazena os indices dos postits iguais (postit_bd_id)
 	var areacandidata = [];
 		areacandidata[1] = "just";
@@ -30,8 +30,6 @@
 		//STEP: get postits of the database
 		postit_bd_id = getTickets_atualiza(project_id,canvas_id);
 
-		//resp+="\nTotal de Postit: "+postit_bd_id.length+"\n";
-
 		//STEP: get postis of the canvas
 		var qtd_postit_canvas = $("#area .postit").size();
 		if( qtd_postit_canvas >0  ){
@@ -43,8 +41,6 @@
 			postit_canvas_id[0] = 0;
 //			alert("zero");
 		}
-		//resp+="\nPostit nos boxes: "+postit_canvas_id.length+"\n";
-
 		
 
 		var qtd_postit_cand = $("#postits ul li").size();
@@ -57,77 +53,54 @@
 			postit_candidato_id[0] = 0;
 //			alert("zero");
 		}
-		//resp+="\nPostit em P's: "+postit_candidato_id.length+"\n";
 
 
-		//DIFF BD e CANVAS
-		if( postit_bd_id.length > qtd_postit_canvas ){
-			resp+="\nBD: "; for(i=0; i<postit_bd_id.length; i++){ resp+=postit_bd_id[i]+", "; } //TESTE
-			
-			resp+="\nCV: "; for(j=0; j<postit_canvas_id.length; j++){ resp+=postit_canvas_id[j]+", "; }
+		//STEP: get postis of the areacandidata
+
+		//STEP: compare if anything postit was added
+		for( i=0; i<postit_bd_id.length; i++ ){
+	//		alert( postit_bd_id[i] );
+			for( j=0; j<postit_canvas_id.length; j++  ){
+	//				alert( postit_canvas_id[j] );
+				for( k=0; k<postit_candidato_id.length; k++  ){
+					if( postit_canvas_id[j] == postit_bd_id[i] || postit_bd_id[i] == postit_candidato_id[k]){
+		//				$("li[postit-id='"+postit_canvas_id[j]+"']").css("background-color","red"); //TESTE
+		//				resp+= postit_bd_id[i]+" = "+postit_canvas_id[j]+"\n"; //TESTE
+						postit_equal.push( postit_bd_id[i] );
+					}
+				}
+			}
+		}	
 		
-			for(i=0; i<postit_bd_id.length; i++){
 
-				for(j=0; j<postit_canvas_id.length; j++){
+		//STEP: delete old postit
+	//	resp+=postit_equal.length; //test
 
-					if( postit_bd_id[i] == postit_canvas_id[j] ){
-						postit_bd_id.splice(i,1);
-					}
-				
-				}
-			
+		if( postit_equal.length > 0 ){
+			for( i=0; i<postit_equal.length; i++ ){
+				//remove os postits antigos e deixa somente os novos
+				index = postit_bd_id.indexOf( postit_equal[i] );
+				postit_bd_id.splice(index, 1);
 			}
+		}
+		//resp+=postit_bd_id.length; //test
 
-			if( postit_bd_id.length > 0 ){ //verificar novamente
-				for(j=0; j<postit_canvas_id.length; j++){
-					for(i=0; i<postit_bd_id.length; i++){
-						if( postit_bd_id[i] == postit_canvas_id[j] ){
-							postit_bd_id.splice(i,1);
-						}
-					}
-				}
+		resp="";
+
+		//STEP: get new postit
+		if( postit_bd_id.length > 0 ){
+//			$.each(postit_bd_id,function(k,v){
+//				//getOneTicket(project_id,canvas_id,v);		
+//				resp+= v+",";
+//				$("#postits ul").append('<li postit-id="'+v+'" class="postit" autor="" areacandidata="just">'+v+'</li>');
+//			});
+
+			for( i=0; i<postit_bd_id.length; i++ ){
+				$("#postits ul").append('<li postit-id="'+postit_bd_id[i]+'" class="postit" autor="" areacandidata="just">'+postit_bd_id[i]+'</li>');
 			}
-
-			resp+="\nCA: ";
-			for(i=0; i<postit_bd_id.length; i++){ resp+=postit_bd_id[i]+", "; }
-
-
-			//DIFF BD e CAND
-			if( postit_candidato_id.length > 0 && postit_candidato_id[0] != 0){
-				for(i=0; i<postit_bd_id.length; i++){
-
-					for(j=0; j<postit_candidato_id.length; j++){
-
-						if(  postit_bd_id[i] == postit_candidato_id[j] ){
-							postit_bd_id.splice(i,1);	
-						}
-
-					}
-
-				}
-			}
-
-
-			if( postit_bd_id.length > 0){
-
-				for(i=0; i<postit_bd_id.length; i++){
-
-					getOneTicket(project_id,canvas_id,postit_bd_id[i]);
-
-					//$("#postits ul").append('<li postit-id="'+postit_bd_id[i]+'" class="postit" autor="" areacandidata="just">'+postit_bd_id[i]+'</li>');
-
-				}
-
-			}
-
-		
-		}//---------------------
-
-
-
-
+		}
+		$("body").append(resp);
 		//alert(resp);
-		
 	},time);
 
 	//STEP: time for refresh

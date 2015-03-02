@@ -96,10 +96,9 @@
 
 						if( canvas_box_id==11 || canvas_box_id==12 || canvas_box_id==13 ){
 							alert("Não é possível receber este post-it!");
-							return false;
-						}
-                    	
-						putBox(project_id,canvas_id,canvas_box_id,id);                    	
+						}else if(canvas_box_id==1 || canvas_box_id==2 || canvas_box_id==3 || canvas_box_id==4 || canvas_box_id==5 || canvas_box_id==6 || canvas_box_id==7 || canvas_box_id==8 || canvas_box_id==9 || canvas_box_id==10){
+							putBox(project_id,canvas_id,canvas_box_id,id); 
+						}						                   	
                     }
                 })
                 .on("dblclick","li",function(){ //expand (o método ON é para aplicar nos objetos criados dinamicamente)
@@ -494,7 +493,8 @@
 
 <ul id="postits" class="postits" drop="auto">
     <ul class="receberpostit"> 
-    	<!--<li postit-id="999" class="postit" autor="" areacandidata="just" style="display: block; z-index: 1;">teste</li>-->
+    	<!--<li postit-id="999" class="postit" autor="" areacandidata="just" style="display: block; z-index: 1;">teste</li>
+    	<li postit-id="888" class="postit" autor="" areacandidata="obj" style="display: block; z-index: 1;">teste</li>-->
     </ul>        
 </ul>
 
@@ -594,8 +594,8 @@
 <!--LER JSON-->
 <!--<script type="text/javascript" src="json/get_postits.js"></script>-->
 
-<!--Atualiza 
-<script type="text/javascript" src="scripts/atualiza.js"></script>-->
+<!--Atualiza -->
+<script type="text/javascript" src="scripts/atualiza.js"></script>
 
 </body>
 </html>

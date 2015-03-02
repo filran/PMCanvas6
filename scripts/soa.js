@@ -77,7 +77,7 @@ function getOneTicket(project_id,canvas_id,id){
 		.done(function(data){
 			$("#postits ul").append('<li postit-id="'+data.id+'" class="postit" autor="" areacandidata="'+areacandidata[data.canvas_box_id]+'">'+data.text+'</li>');
 
-			$("body").append(data.id+", ")
+			//$("body").append(data.id+", ")
 		})
 	;
 	
