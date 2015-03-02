@@ -211,7 +211,7 @@ function getTickets(){
 					var postit_html = '<li postit-id="'+data[i].id+'" class="postit" autor="" areacandidata="" style="display: block; z-index: 1;">'+riscos+'</li>';				
 					$("#riscos .receberpostit").append(postit_html);
 				}else if( box_id == 12 ){ // TEMPO				
-					var postit_html = '<li postit-id="'+data[i].id+'" class="postit" autor="" areacandidata="" style="display: block; z-index: 1;">'+data_inicio+' a '+data_fim+'</li>';				
+					var postit_html = '<li postit-id="'+data[i].id+'" canvas_ticket_id="'+data[i].canvas_ticket_id+'" class="postit" autor="" areacandidata="" style="display: block; z-index: 1;">'+data_inicio+' a '+data_fim+'</li>';				
 					$("#tempo .receberpostit").append(postit_html);
 				}else if( box_id == 13 ){
 					var postit_html = '<li postit-id="'+data[i].id+'" class="postit" autor="" areacandidata="" style="display: block; z-index: 1;">'+data[i].text+': '+data[i].quantidade+' x R$ '+data[i].valor+'</li>';
@@ -309,9 +309,11 @@ function getentregas(project_id,canvas_id){
 			for(i=0; i<json.length; i++){
 				$("#entrega").append("<option value='"+json[i].id+"'>"+json[i].text+"</option>");
 			}
-			carregandooff();
+			carregandooff();									
 		})
 	;
+
+
 }
 
 
@@ -324,9 +326,10 @@ function gettempo(project_id,canvas_id,id){
 			$("#data_fim").val(troca(json[0].data_fim));
 			$("#entrega").val(json[0].canvas_ticket_id); //seleciona entrega que foi vinculado
 
-			carregandooff();
+			carregandooff();			
 		})
 	;
+	
 }
 
 

@@ -1,0 +1,49 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta charset='utf-8'/>
+
+<!--jQuery 2.1-->
+<script type="text/javascript" src="../../scripts/jquery/jquery-2.1.0.js"></script>        
+ 
+<script type="text/javascript" src="../../scripts/jquery-ui/jquery-ui-1.10.4.custom.js"></script>
+<link type="text/css" rel="stylesheet" href="../../scripts/jquery-ui/jquery-ui-1.10.4.custom.css">
+
+<style>
+
+</style>
+
+<script type='text/javascript'>
+$(function(){
+
+	$("#evento").click(function(){
+		$("ul > li").each(function(index){
+			id = $(this).attr("entrega");
+
+			$("select option[value="+id+"]").remove();
+		});
+	});
+
+});
+
+</script>
+
+</head>
+<body>
+
+<ul>
+	<li post-id="2" entrega="1">Doisdois</li>
+	<li post-id="3" entrega="2">Trêstrês</li>
+</ul>
+
+<select>
+	<option value="1">Um</option>
+	<option value="2">Dois</option>
+	<option value="3">Três</option>
+</select>
+
+<p id="evento">OK</p>
+
+
+</body>
+</html>

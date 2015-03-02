@@ -100,3 +100,21 @@ label{
 input,select{
 	font-size:1em;
 }
+
+
+
+#custos_div{
+	/*background-color:lightgray;*/
+	font-size:1.5em;
+	text-align:center;
+	width: 450px;
+	height: 300px;
+	top:50%;
+	left:50%;
+	margin-top:-150px;
+	margin-left: -225px;
+	position:absolute;
+}
+
+
+

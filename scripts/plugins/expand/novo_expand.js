@@ -66,7 +66,7 @@
 					getentregas(project_id,canvas_id); //carrega as Entregas
 					gettempo(project_id,canvas_id,id); //carrega das datas e selecioa entrega
 					
-					$(".bigpostit").append("<div id='wrapconteudopostit'>"+conteudo_data+"</div>");					
+					$(".bigpostit").append("<div id='wrapconteudopostit'>"+conteudo_data+"</div>");
 
 				}else if(canvas_box_id==13){ //CUSTOS
 					conteudo_data = "<div id='custos_div'><div><label>Texto:</label><br><input type='text' id='text_custo' name='text_custo' value=''></div><div><label>Quantidade:</label><br><input type='number' id='quantidade' name='quantidade' value=''></div><div><label>Valor:</label><br><input type='number' id='valor' name='valor' value=''></div></div>";
@@ -170,12 +170,12 @@
 					var depois = $("#conteudopostit").html();
 
 					if( canvas_box_id==11 ){ //RISCO
-
+					
 						if( depois=="" ){
 							alert("Digite todos os campos! Você deve seguir o exemplo:\nRisco:<texto>\nCausa:<texto>\nEfeito:<texto>");
 							return false;
 						}
-						
+
 						t = separaterisk_post(depois);
 						depois = t["risco"];
 						causa = t["causa"];
@@ -186,39 +186,12 @@
 						data_inicio = bordertodesk($("#data_inicio").val());
 						data_fim = bordertodesk($("#data_fim").val());
 						canvas_ticket_id = $("#entrega option:selected").attr("value");
-						fechar_tipo = "tempo";	
-
-
-						//REMOVE ENTREGA
-						qtd_tempo = $("li[canvas_box_id=12] .receberpostit li").size(); //alert(qtd_tempo);
-						if(qtd_tempo > 0){
-							$("li[canvas_box_id=12] .receberpostit li").each(function(index){
-								identrega = $(this).attr("canvas_ticket_id");
-
-								$("li[canvas_box_id=9] .receberpostit li").each(function(index2){
-									identrega_9 = $(this).attr("postit-id");
-
-									$("#entrega option").each(function(index3){
-										identrega_select = $("#entrega option").attr("value");
-											if( identrega == identrega_9 && identrega_9==identrega_select){
-											alert("Esta entrega não pode ser usada.");
-											$("#entrega option[value="+identrega+"]").remove();
-										}										
-										
-									});
-
-								});
-								
-								
-							});
-						}//==================================================================									
-
+						fechar_tipo = "tempo";
 
 						if( !data_inicio || !data_fim || !canvas_ticket_id){
 							alert("Digite todos os campos!");
 							return false;
-						}							
-						
+						}
 					}
 
 					if( canvas_box_id == 13 ){	
