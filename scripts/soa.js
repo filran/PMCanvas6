@@ -77,7 +77,22 @@ function getOneTicket(project_id,canvas_id,id){
 		.done(function(data){
 			$("#postits ul").append('<li postit-id="'+data.id+'" class="postit" autor="" areacandidata="'+areacandidata[data.canvas_box_id]+'">'+data.text+'</li>');
 
-			//$("body").append(data.id+", ")
+
+			//mudar fundo do box quando receber algum post-it candidato
+			var cbi = data.canvas_box_id; //areacandidata
+			var coratencao = "#cc3333";
+			var select = "#"+areacandidata[cbi];
+			var coratual = $(select).css("background-color");
+
+			$(select).animate({
+				"backgroundColor": coratencao
+			},750);
+
+			$(select).animate({
+				"backgroundColor": coratual
+			},750);
+
+
 		})
 	;
 	
