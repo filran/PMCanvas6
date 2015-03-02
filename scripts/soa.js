@@ -1,4 +1,13 @@
+function carregandoon(){
+	$("#carregando").show();
+}
+function carregandooff(){
+	$("#carregando").hide();
+}
+
+
 function getProjetcs(){
+	carregandoon();
 
 	$.getJSON( path+"phpsoa/getprojects.php", {format:"json"} )
 		.done(function(data){
@@ -9,13 +18,17 @@ function getProjetcs(){
 				project_id[i] = data[i].id;
 				project_name[i] = data[i].name;
 				$("#projetos").append('<option value="'+project_id[i]+'">'+project_name[i]+'</option>');
-			}	
+			}
+
+			carregandooff();	
 		})
 	;
 }
 
 
 function getCanvas(){
+	carregandoon();
+
 	$('#projetos').change(function() {
 		var value = $('#projetos option:selected').attr("value");
 		$("#papel").css("visibility","visible");
@@ -26,6 +39,8 @@ function getCanvas(){
 				$('#canvas_id').attr("value",data.id);
 				$("#gp").attr("value",data.gp);
 				$("#pitch").attr("value",data.name);
+
+				carregandooff();
 			});
 		}
 	});
@@ -48,6 +63,12 @@ function getTickets_atualiza(project_id,canvas_id){
 			}else{
 				postit_bd_id[0] = 0;
 			}	
+		},
+		beforeSend: function(){
+			carregandoon();
+		},
+		complete: function(){
+			carregandooff();
 		}
 	});
 	return postit_bd_id;
@@ -55,6 +76,9 @@ function getTickets_atualiza(project_id,canvas_id){
 
 
 function getOneTicket(project_id,canvas_id,id){
+
+	carregandoon();
+
 	var areacandidata = [];
 	areacandidata[1] = "just";
 	areacandidata[2] = "obj";
@@ -92,7 +116,7 @@ function getOneTicket(project_id,canvas_id,id){
 				"backgroundColor": coratual
 			},750);
 
-
+			carregandooff();
 		})
 	;
 	
@@ -113,6 +137,8 @@ function getOneTicket(project_id,canvas_id,id){
 
 
 function getTickets(){
+
+	carregandoon();
 
 	var project_id = $("#dados_projeto").attr("project_id");
 	var canvas_id  = $("#dados_canvas").attr("canvas_id");
@@ -158,12 +184,14 @@ function getTickets(){
 					$("#custos .receberpostit").append(postit_html);
 				}
 			}
+			carregandooff();
 		})
 	;
 }
 
 
 function postTicket(project_id,canvas_id,canvas_box_id,data_inicio,data_fim,depois,causa,efeito,quantidade,valor,canvas_ticket_id){
+	
 	$.ajax({
 		type: "POST",
 		url: path+"phpsoa/postticket.php?projects_id="+project_id+"&canvas_project_id="+canvas_id+"&canvas_box_id="+canvas_box_id+"&data_inicio="+data_inicio+"&data_fim="+data_fim+"&text="+depois+"&causa="+causa+"&efeito="+efeito+"&quantidade="+quantidade+"&valor="+valor+"&canvas_ticket_id="+canvas_ticket_id,
@@ -182,7 +210,13 @@ function deleteTicket(project_id,canvas_id,id){
 		type: "delete",
 		url: path+"phpsoa/deleteticket.php?projects_id="+project_id+"&canvas_project_id="+canvas_id+"&id="+id,
 		contentType: "application/json",
-		dataType: "jsonp"
+		dataType: "jsonp",
+		beforeSend: function(){
+			carregandoon();
+		},
+		complete: function(){
+			carregandooff();
+		}
 	});
 	
 }
@@ -193,29 +227,42 @@ function putTicket(project_id,canvas_id,canvas_box_id,data_inicio,data_fim,depoi
 		type: "PUT",
 		url: path+"phpsoa/putticket.php?projects_id="+project_id+"&canvas_project_id="+canvas_id+"&canvas_box_id="+canvas_box_id+"&data_inicio="+data_inicio+"&data_fim="+data_fim+"&text="+depois+"&causa="+causa+"&efeito="+efeito+"&quantidade="+quantidade+"&valor="+valor+"&canvas_ticket_id="+canvas_ticket_id+"&id="+id,
 		contentType: "application/json",
-		dataType: "jsonp"
+		dataType: "jsonp",
+		beforeSend: function(){
+			carregandoon();
+		},
+		complete: function(){
+			carregandooff();
+		}
 	});
 	
 }
 
 
 function getentregas(project_id,canvas_id){
+	carregandoon();
+
 	$.getJSON( path+"phpsoa/getentregas.php?projects_id="+project_id+"&canvas_projects_id="+canvas_id , {format:"json"} )
 		.done(function(json){
 			for(i=0; i<json.length; i++){
 				$("#entrega").append("<option value='"+json[i].id+"'>"+json[i].text+"</option>");
 			}
+			carregandooff();
 		})
 	;
 }
 
 
 function gettempo(project_id,canvas_id,id){
+	carregandoon();
+
 	$.getJSON( path+"phpsoa/gettempo.php?projects_id="+project_id+"&canvas_projects_id="+canvas_id+"&id="+id , {format:"json"} )
 		.done(function(json){
 			$("#data_inicio").val(troca(json[0].data_inicio));
 			$("#data_fim").val(troca(json[0].data_fim));
 			$("#entrega").val(json[0].canvas_ticket_id); //seleciona entrega que foi vinculado
+
+			carregandooff();
 		})
 	;
 }
@@ -234,6 +281,12 @@ function getOneCusto(project_id,canvas_id,id){
 			$("#text_custo").attr("value",json.text);
 			$("#quantidade").attr("value",json.quantidade);
 			$("#valor").attr("value",json.valor);
+		},
+		beforeSend: function(){
+			carregandoon();
+		},
+		complete: function(){
+			carregandooff();
 		}
 	});		
 
@@ -244,6 +297,12 @@ function putBox(project_id,canvas_id,canvas_box_id,id){
 		type: "PUT",
 		url: path+"phpsoa/putbox.php?projects_id="+project_id+"&canvas_project_id="+canvas_id+"&canvas_box_id="+canvas_box_id+"&id="+id,
 		contentType: "application/json",
-		dataType: "jsonp"
+		dataType: "jsonp",
+		beforeSend: function(){
+			carregandoon();
+		},
+		complete: function(){
+			carregandooff();
+		}
 	});	
 }

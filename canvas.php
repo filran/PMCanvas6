@@ -58,6 +58,7 @@
     
     <script type="text/javascript">              
         $(function(){  
+        	carregandooff();
 
         	//var fundo = $("#just").css("background-color");
         	//alert(fundo);
@@ -404,6 +405,9 @@
 </style>
 </head>
 <body>
+<div id="carregando" name="carregando">Carregando...</div>
+
+
 <div id="dados" style="visibility:visible; position:none">
 	<span id="dados_projeto" project_id="<?php echo $_POST['projetos']; ?>"></span>
 	<span id="dados_canvas" canvas_id="<?php echo $_POST['canvas_id']; ?>"></span>

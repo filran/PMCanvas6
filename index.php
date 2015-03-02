@@ -68,6 +68,8 @@ header('Access-Control-Allow-Origin: *');
 	<script type="text/javascript">
 	
 		$(function(){
+			carregandooff();
+		
 			$.support.cors = true;
 			//var dominio = "http://localhost/PMCanvas5.0/";
 			//var dominio = "http://odysseus-lens.ddns.net/PMCanvas5.0/";
@@ -95,6 +97,7 @@ header('Access-Control-Allow-Origin: *');
 
 </head>
 <body>
+<div id="carregando" name="carregando">Carregando...</div>
 	<div id="main">
 		<div id="header"><img src="imagens/pmcanvas.png" /><h1>PMCanvas<br>Modo Quadro Interatito</h1></div>
 		<div id="formulario">
