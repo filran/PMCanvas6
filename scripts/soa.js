@@ -73,16 +73,25 @@ function getOneTicket(project_id,canvas_id,id){
 
 	var url = path+"phpsoa/getoneticket.php?projects_id="+project_id+"&canvas_projects_id="+canvas_id+"&id="+id;
 
-	$.ajax({
-		async: false,
-		type: "GET",
-		url: url,
-		dataType: "json",
-		success: function(json){
-//			resp+=json.id; //test
-			$("#postits ul").append('<li postit-id="'+json.id+'" class="postit" autor="" areacandidata="'+areacandidata[json.canvas_box_id]+'">'+json.text+'</li>');
-		}
-	});		
+	$.getJSON( url , {format:"json"} )
+		.done(function(data){
+			$("#postits ul").append('<li postit-id="'+data.id+'" class="postit" autor="" areacandidata="'+areacandidata[data.canvas_box_id]+'">'+data.text+'</li>');
+
+			$("body").append(data.id+", ")
+		})
+	;
+	
+
+//	$.ajax({
+//		async: false,
+//		type: "GET",
+//		url: url,
+//		dataType: "json",
+//		success: function(json){
+////			resp+=json.id; //test
+//			$("#postits ul").append('<li postit-id="'+json.id+'" class="postit" autor="" areacandidata="'+areacandidata[json.canvas_box_id]+'">'+json.text+'</li>');
+//		}
+//	});		
 
 }
 
@@ -213,4 +222,13 @@ function getOneCusto(project_id,canvas_id,id){
 		}
 	});		
 
+}
+
+function putBox(project_id,canvas_id,canvas_box_id,id){
+	$.ajax({
+		type: "PUT",
+		url: path+"phpsoa/putbox.php?projects_id="+project_id+"&canvas_project_id="+canvas_id+"&canvas_box_id="+canvas_box_id+"&id="+id,
+		contentType: "application/json",
+		dataType: "jsonp"
+	});	
 }

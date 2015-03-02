@@ -2,7 +2,7 @@
 
 (function atualiza(){
 	//var dominio = "http://localhost/ws_gestaointegrada/";
-	var time = 10000;
+	var time = 5000;
 	var project_id = $("#dados_projeto").attr("project_id");
 	var canvas_id  = $("#dados_canvas").attr("canvas_id");
 	var url = dominio+"projects/"+project_id+"/canvas_projects/"+canvas_id+"/canvas_tickets.json?key="+key;
@@ -54,8 +54,8 @@
 //			alert("zero");
 		}
 
-
 		//STEP: get postis of the areacandidata
+		
 
 		//STEP: compare if anything postit was added
 		for( i=0; i<postit_bd_id.length; i++ ){
@@ -71,7 +71,6 @@
 				}
 			}
 		}	
-		
 
 		//STEP: delete old postit
 	//	resp+=postit_equal.length; //test
@@ -83,24 +82,21 @@
 				postit_bd_id.splice(index, 1);
 			}
 		}
-		//resp+=postit_bd_id.length; //test
+//		resp+=postit_bd_id.length; //test
 
-		//resp="";
-
+		resp="";
 		//STEP: get new postit
 		if( postit_bd_id.length > 0 ){
-			//$.each(postit_bd_id,function(k,v){
-				//getOneTicket(project_id,canvas_id,v);		
-				//resp+= v+",";
-			//});
-
-			for( i=0; i<postit_bd_id.length; i++ ){
-				$("#postits ul").append('<li postit-id="'+postit_bd_id[i]+'" class="postit" autor="" areacandidata="just">TESTE</li>');
-			}
+			$.each(postit_bd_id,function(k,v){
+				getOneTicket(project_id,canvas_id,v);
+				//resp+=v;
+			});
 		}
-		//$("body").append(resp);
+
 		//alert(resp);
 	},time);
+
+	
 
 	//STEP: time for refresh
 	setTimeout(atualiza,time);

@@ -58,6 +58,9 @@
     
     <script type="text/javascript">              
         $(function(){  
+
+        	//var fundo = $("#just").css("background-color");
+        	//alert(fundo);
         
         	//obtendo os tickets
 			getTickets();
@@ -86,6 +89,18 @@
             $( "ul.receberpostit" )
                 .sortable({
                     connectWith: "ul.receberpostit",
+                    stop: function(event,ui){ //Atualizar quando mudar de BOX
+	                    item = ui.item;	                    
+                    	canvas_box_id = $(item).parent().parent().attr("canvas_box_id"); //Box que está recebendo novo post-it
+                    	id = $(item).attr("postit-id"); 
+
+						if( canvas_box_id==11 || canvas_box_id==12 || canvas_box_id==13 ){
+							alert("Não é possível receber este post-it!");
+							return false;
+						}
+                    	
+						putBox(project_id,canvas_id,canvas_box_id,id);                    	
+                    }
                 })
                 .on("dblclick","li",function(){ //expand (o método ON é para aplicar nos objetos criados dinamicamente)
                     $(this).expand("postit");
@@ -101,7 +116,7 @@
             //#AREA > LI > UL.RECEBERPOSTIT=======================================
             $( "#area > li > ul.receberpostit" )
                 .on("mouseup","li",function(){
-
+                	//o this é o <li class=postit>
                     atualizar_areacandidata(this);
                 })
 
@@ -321,6 +336,29 @@
             function atualizar_areacandidata(seletor){
                 var id = $(seletor).parent().parent().get(0).id; //id area
                 $(seletor).attr("areacandidata",id);
+
+                /*if( id!="riscos" || id!="tempo" || id!="custos" ){
+		            data_inicio = null;
+		            data_fim = null; 
+		            causa = null;
+		            efeito = null;
+		            quantidade = null;
+		            valor = null;
+		            canvas_ticket_id = null;		                           	
+                }
+
+                if(id=="just"){
+					canvas_box_id = 1;
+                }else if(id=="obj"){
+                	canvas_box_id = 2;
+                }
+
+	            depois = $(seletor).html();
+				idpostit = $(seletor).attr("postit-id");*/
+
+				//alert( id+"-"+canvas_box_id );
+
+                //putTicket(project_id,canvas_id,canvas_box_id,data_inicio,data_fim,depois,causa,efeito,quantidade,valor,canvas_ticket_id,idpostit);
             }
 
 
@@ -556,8 +594,8 @@
 <!--LER JSON-->
 <!--<script type="text/javascript" src="json/get_postits.js"></script>-->
 
-<!--Atualiza -->
-<script type="text/javascript" src="scripts/atualiza.js"></script>
+<!--Atualiza 
+<script type="text/javascript" src="scripts/atualiza.js"></script>-->
 
 </body>
 </html>
