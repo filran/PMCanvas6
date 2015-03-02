@@ -1,0 +1,42 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta charset='utf-8'/>
+
+<!--jQuery 2.1-->
+<script type="text/javascript" src="../../scripts/jquery/jquery-2.1.0.js"></script>        
+ 
+<script type="text/javascript" src="../../scripts/jquery-ui/jquery-ui-1.10.4.custom.js"></script>
+<link type="text/css" rel="stylesheet" href="../../scripts/jquery-ui/jquery-ui-1.10.4.custom.css">
+
+<style>
+
+</style>
+
+<script type='text/javascript'>
+$(function(){
+
+	$("#menuitens").append('<a href="#"><img id="" src="../../imagens/icones/user.png" width="40" height="40" alt="nome"></a>');
+	$("#menuitens").append('<a href="#"><img id="" src="../../imagens/icones/user.png" width="40" height="40" alt="nome"></a>');
+
+	$("#menuitens a img").click(function(){
+		alert("aasg");
+	});
+
+});
+
+</script>
+
+</head>
+<body>
+
+<div id="menulateral">
+	<div id="menuitens" status="hidden">
+		<a href="#"><img id="save" name="save" src="../../imagens/icones/save.png" width="40" height="40"></a>
+			
+	</div>
+	<div id="seta"><a href="#"><img src="../../imagens/icones/menulateral.png" /></a></div>
+</div>
+
+</body>
+</html>

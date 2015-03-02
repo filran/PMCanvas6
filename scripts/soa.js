@@ -26,6 +26,39 @@ function getProjetcs(){
 }
 
 
+
+function getUsers( project_id ){
+	carregandoon();
+
+	$.getJSON( path+"phpsoa/getprojects.php", {format:"json"} )
+		.done(function(data){
+
+			for(i=0; i<data.length; i++){
+
+				if( data[i].id == project_id ){
+
+					for( j=0; j<data[i].members.length; j++ ){
+					
+						var nome = data[i].members[j].firstname;
+						
+						$("#menuitens")
+						.append('<a href="#"><img id="" src="imagens/icones/user.png" width="40" height="40" alt="nome"><br>'+nome+'</a>');
+					
+					}
+
+
+				}
+
+			}
+
+			carregandooff();	
+		})
+	;
+}
+
+
+
+
 function getCanvas(){
 	carregandoon();
 

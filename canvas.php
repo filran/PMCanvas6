@@ -60,16 +60,18 @@
         $(function(){  
         	carregandooff();
 
-        	//var fundo = $("#just").css("background-color");
-        	//alert(fundo);
-        
-        	//obtendo os tickets
-			getTickets();
         
 			//var dominio = "http://localhost/PMCanvas5.0/";
 			//var dominio = "http://odysseus-lens.ddns.net/PMCanvas5.0/";
 			var project_id = $("#dados_projeto").attr("project_id");
 			var canvas_id  = $("#dados_canvas").attr("canvas_id"); 
+
+
+			//obtendo os tickets
+			getTickets();
+			
+			getUsers( project_id );
+			
                  
             //#WRAP=======================================
             //Redimensionar
@@ -343,6 +345,9 @@
             }
 
 
+			
+			
+
 			$(window).on("beforeunload",function(){
 				var qtd_postit_cand = $("#postits ul li").size();
 				if( qtd_postit_cand > 1 ){
@@ -360,9 +365,6 @@
 
 			
 
-			
-			
-
         });
 
         
@@ -376,6 +378,7 @@
 		top:80px;
 		left:-80px;
 		z-index:1;
+		font-size:12;
 	}
 
 	#menulateral a{
@@ -395,6 +398,7 @@
 		margin-top:6;
 		margin-left:4;
 	}
+
 
 	#menuitens{
 		background-color:white;
@@ -424,13 +428,6 @@
 <div id="menulateral">
 	<div id="menuitens" status="hidden">
 		<a href="#"><img id="save" name="save" src="imagens/icones/save.png" width="40" height="40"></a>
-		<a href="#"><img src="imagens/icones/user.png" width="40" height="40"></a>
-		<a href="#"><img src="imagens/icones/user.png" width="40" height="40"></a>
-		<a href="#"><img src="imagens/icones/user.png" width="40" height="40"></a>
-		<a href="#"><img src="imagens/icones/user.png" width="40" height="40"></a>
-		<a href="#"><img src="imagens/icones/user.png" width="40" height="40"></a>
-		<a href="#"><img src="imagens/icones/user.png" width="40" height="40"></a>
-		
 	</div>
 	<div id="seta"><a href="#"><img src="imagens/icones/menulateral.png" /></a></div>
 </div>
