@@ -96,11 +96,32 @@
 	                    item = ui.item;	                    
                     	canvas_box_id = $(item).parent().parent().attr("canvas_box_id"); //Box que está recebendo novo post-it
                     	id = $(item).attr("postit-id"); 
+						ac = $(item).attr("areacandidata"); //área candidata
+                    	
 
 						if( canvas_box_id==11 || canvas_box_id==12 || canvas_box_id==13 ){
-							alert("Não é possível receber este post-it!");
+							if( canvas_box_id==11 && ac=="riscos" ){
+							
+							}else if( canvas_box_id==12 && ac=="tempo" ){
+								
+							}else if( canvas_box_id==13 && ac=="custos" ){
+								
+							}else{						
+								alert("Não é possível receber este post-it!");
+								return false;
+							}
+							
 						}else if(canvas_box_id==1 || canvas_box_id==2 || canvas_box_id==3 || canvas_box_id==4 || canvas_box_id==5 || canvas_box_id==6 || canvas_box_id==7 || canvas_box_id==8 || canvas_box_id==9 || canvas_box_id==10){
-							putBox(project_id,canvas_id,canvas_box_id,id); 
+
+							if( ac=="riscos" || ac=="tempo" || ac=="custos" ){
+								alert("Não é possível receber este post-it!");
+								return false;
+							}else{
+							    putBox(project_id,canvas_id,canvas_box_id,id); 
+								//alert("Salvar - "+ac);
+							}
+							
+							
 						}						                   	
                     }
                 })
@@ -198,6 +219,7 @@
                             if( cont==0 ){
                                 alert("Não há post-it.");
                             }
+
                         }
                         function ocultarPostits(){
                             $(".postits").fadeOut(100,function(){
